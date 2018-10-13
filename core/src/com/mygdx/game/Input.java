@@ -3,10 +3,10 @@ package com.mygdx.game;
 import com.badlogic.gdx.Gdx;
 
 public class Input {
-    public static boolean isClickedA() {
-        return Gdx.input.isKeyPressed(29);
+    public static boolean isClickedLeft() {
+        return Gdx.input.isKeyPressed(29)||Gdx.input.isKeyPressed(21);
     }
-    public static boolean isClickedD() {
-        return Gdx.input.isKeyPressed(32);
+    public static boolean isClickedRight() {
+        return Gdx.input.isKeyPressed(32)||Gdx.input.isKeyPressed(22);
     }
 }

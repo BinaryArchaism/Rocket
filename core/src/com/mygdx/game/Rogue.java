@@ -8,10 +8,12 @@ import com.badlogic.gdx.math.Vector2;
 public class Rogue {
     private Texture text;
     private Vector2 position;
+    private boolean isMoving;
 
     public Rogue(int x, int y) {
-        text = new Texture("rogue/rogue like idle_Animation 1_0.png");
+        text = new Texture("rogue/rogue.png");
         position = new Vector2(x, y);
+        isMoving = false;
     }
 
     public void render(SpriteBatch batch) {
@@ -20,15 +22,20 @@ public class Rogue {
 
     public void update() {
         move();
+        if (isMoving) text = new Texture("rogue/rogue_run.gif");
+        else text = new Texture("rogue/rogue.png");
         if (position.x > Gdx.graphics.getWidth()-60) position.x = Gdx.graphics.getWidth()-60;
         if (position.x < -20) position.x = -20;
     }
 
     public void move() {
-        if (Input.isClickedA()) position.x--;
-        if (Input.isClickedD()) {
+        if (Input.isClickedLeft()) {
+            position.x--;
+            isMoving = true;
+        } else isMoving = false;
+        if (Input.isClickedRight()) {
             position.x++;
-            text =
-        }
+            isMoving = true;
+        } else isMoving = false;
     }
 }
