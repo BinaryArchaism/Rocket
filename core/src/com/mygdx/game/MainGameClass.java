@@ -9,19 +9,23 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MainGameClass extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
+	Rogue rog;
 	
 	@Override
 	public void create () {
 		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
+		img = new Texture("country-platform.png");
+		rog = new Rogue(10, 10);
 	}
 
 	@Override
 	public void render () {
+		update();
 		Gdx.gl.glClearColor(1, 0, 0, 1);
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 		batch.begin();
 		batch.draw(img, 0, 0);
+		rog.render(batch);
 		batch.end();
 	}
 	
@@ -29,5 +33,9 @@ public class MainGameClass extends ApplicationAdapter {
 	public void dispose () {
 		batch.dispose();
 		img.dispose();
+	}
+
+	public void update() {
+		rog.update();
 	}
 }

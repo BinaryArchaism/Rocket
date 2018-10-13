@@ -8,5 +8,8 @@ public class DesktopLauncher {
 	public static void main (String[] arg) {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		new LwjglApplication(new MainGameClass(), config);
+		config.height = 224;
+		config.width = 384;
+		config.title = "Story of Rogue";
 	}
 }
