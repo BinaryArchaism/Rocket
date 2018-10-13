@@ -9,6 +9,7 @@ public class Rogue {
     private Texture text;
     private Vector2 position;
     private boolean isMoving;
+    private boolean space;
 
     public Rogue(int x, int y) {
         text = new Texture("rogue/rogue.png");
@@ -22,20 +23,14 @@ public class Rogue {
 
     public void update() {
         move();
-        if (isMoving) text = new Texture("rogue/rogue_run.gif");
-        else text = new Texture("rogue/rogue.png");
-        if (position.x > Gdx.graphics.getWidth()-60) position.x = Gdx.graphics.getWidth()-60;
-        if (position.x < -20) position.x = -20;
+        if (position.x > Gdx.graphics.getWidth()-50) position.x = Gdx.graphics.getWidth()-50;
+        if (position.x < -18) position.x = -18;
     }
 
     public void move() {
-        if (Input.isClickedLeft()) {
+        if (Input.isClickedLeft())
             position.x--;
-            isMoving = true;
-        } else isMoving = false;
-        if (Input.isClickedRight()) {
+        if (Input.isClickedRight())
             position.x++;
-            isMoving = true;
-        } else isMoving = false;
     }
 }

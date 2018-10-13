@@ -15,7 +15,7 @@ public class MainGameClass extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("country-platform.png");
-		rog = new Rogue(10, 10);
+		rog = new Rogue(10, 15);
 	}
 
 	@Override

@@ -9,4 +9,7 @@ public class Input {
     public static boolean isClickedRight() {
         return Gdx.input.isKeyPressed(32)||Gdx.input.isKeyPressed(22);
     }
+    public static boolean isClickedSpace() {
+        return Gdx.input.isKeyPressed(62);
+    }
 }
