@@ -15,34 +15,43 @@ public class Rogue {
 
     private Vector2 position;
 
+    private boolean isMoving = false;
+
     public Rogue(int x, int y) {
-        rogueTexture = new Texture("rogue/rogue like run.png");
-        TextureRegion[][] tmp = TextureRegion.split(rogueTexture, rogueTexture.getWidth()/6, rogueTexture.getHeight());
-        runFrame = new TextureRegion[6];
+        rogueTexture = new Texture("axe bandit run.png");
+        TextureRegion[][] tmp = TextureRegion.split(rogueTexture, rogueTexture.getWidth()/8, rogueTexture.getHeight());
+        runFrame = new TextureRegion[8];
         int index = 0;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 8; i++) {
             runFrame[index++] = tmp[0][i];
         }
-        runAnimation = new Animation(0.25f, runFrame);
+        runAnimation = new Animation(0.07f, runFrame);
 
         position = new Vector2(x, y);
+        currantFrame = (TextureRegion) runAnimation.getKeyFrame(0);
     }
 
     public void render(SpriteBatch batch) {
-        currantFrame = (TextureRegion) runAnimation.getKeyFrame(MainGameClass.stateTime, true);
+
         batch.draw(currantFrame, position.x, position.y);
     }
 
     public void update() {
         move();
-        if (position.x > Gdx.graphics.getWidth()-50) position.x = Gdx.graphics.getWidth()-50;
+        if (position.x > 200) position.x = 200;
         if (position.x < -18) position.x = -18;
+        if (isMoving)  currantFrame = (TextureRegion) runAnimation.getKeyFrame(MainGameClass.stateTime, true);
+        isMoving = false;
     }
 
     public void move() {
-        if (Input.isClickedLeft())
+        if (Input.isClickedLeft()) {
             position.x--;
-        if (Input.isClickedRight())
+            isMoving = true;
+        }
+        if (Input.isClickedRight()) {
             position.x++;
+            isMoving = true;
+        }
     }
 }
