@@ -23,7 +23,6 @@ public class MainGameClass extends ApplicationAdapter {
 
 		music = new FileHandle("soundtracks/3.wav");
 		//Gdx.audio.newMusic(music).play();
-
 	}
 
 	@Override
@@ -34,7 +33,6 @@ public class MainGameClass extends ApplicationAdapter {
 		stateTime += Gdx.graphics.getDeltaTime();
 
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-
 
 		batch.begin();
 		batch.draw(img, 0, 0);

@@ -23,46 +23,43 @@ public class Rogue {
 
     private Vector2 position;
 
-    private boolean isMoving = false;
-
     public Rogue(int x, int y) {
         rogueStay();
         rogueRun();
         position = new Vector2(x, y);
+        currantFrame = (TextureRegion) stayAnimation.getKeyFrame(MainGameClass.stateTime/4f, true);
     }
 
     public void render(SpriteBatch batch) {
-        if (isMoving) currantFrame = (TextureRegion) runAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
-        else currantFrame = (TextureRegion) stayAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         batch.draw(currantFrame, position.x, position.y);
+        currantFrame = (TextureRegion) stayAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
     }
 
     public void update() {
         move();
         if (position.x > 340) position.x = 340;
         if (position.x < -18) position.x = -18;
-        isMoving = false;
     }
 
     public void move() {
         if (Input.isClickedLeft()) {
             position.x--;
-            isMoving = true;
+            currantFrame = (TextureRegion) runAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
         if (Input.isClickedRight()) {
             position.x++;
-            isMoving = true;
+            currantFrame = (TextureRegion) runAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
     }
     public void rogueStay() {
-        stayTexture = new Texture("Axe Bandit.png");
-        TextureRegion[][] tmp = TextureRegion.split(stayTexture, stayTexture.getWidth()/6, stayTexture.getHeight());
-        stayFrame = new TextureRegion[6];
+        stayTexture = new Texture("knightStay.png");
+        TextureRegion[][] tmp = TextureRegion.split(stayTexture, stayTexture.getWidth()/2, stayTexture.getHeight());
+        stayFrame = new TextureRegion[2];
         int index = 0;
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < 2; i++) {
             stayFrame[index++] = tmp[0][i];
         }
-        stayAnimation = new Animation(0.07f, stayFrame);
+        stayAnimation = new Animation(0.25f, stayFrame);
     }
     public void rogueRun() {
         runTexture = new Texture("axe bandit run.png");
