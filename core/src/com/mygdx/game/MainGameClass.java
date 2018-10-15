@@ -10,7 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 public class MainGameClass extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	Rogue rog;
+	Knight rog;
 	static float stateTime;
 	FileHandle music;
 	
@@ -18,7 +18,7 @@ public class MainGameClass extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("country-platform.png");
-		rog = new Rogue(10, 25);
+		rog = new Knight(10, 25);
 		stateTime = 0f;
 
 		music = new FileHandle("soundtracks/3.wav");

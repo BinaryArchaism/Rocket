@@ -11,7 +11,7 @@ public class DesktopLauncher {
 		new LwjglApplication(new MainGameClass(), config);
 		config.height = 224;
 		config.width = 384;
-		config.title = "Story of Rogue";
+		config.title = "Story of Knight";
 		config.addIcon("icon.png", Files.FileType.Local);
 	}
 }
