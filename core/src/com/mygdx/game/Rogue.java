@@ -23,15 +23,19 @@ public class Rogue {
 
     private Vector2 position;
 
+    //Определяет куда смотрит герой. true - смотрит вправо, false - смотрит влево.
+    private boolean isWatchingRight = true;
+
     public Rogue(int x, int y) {
-        rogueStay();
-        rogueRun();
+        rogueStayR();
         position = new Vector2(x, y);
         currantFrame = (TextureRegion) stayAnimation.getKeyFrame(MainGameClass.stateTime/4f, true);
     }
 
     public void render(SpriteBatch batch) {
         batch.draw(currantFrame, position.x, position.y);
+        if (isWatchingRight) rogueStayR();
+        else rogueStayL();
         currantFrame = (TextureRegion) stayAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
     }
 
@@ -44,25 +48,49 @@ public class Rogue {
     public void move() {
         if (Input.isClickedLeft()) {
             position.x--;
+            isWatchingRight = false;
+            rogueRunLeft();
             currantFrame = (TextureRegion) runAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
         if (Input.isClickedRight()) {
             position.x++;
+            isWatchingRight = true;
+            rogueRunRight();
             currantFrame = (TextureRegion) runAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
     }
-    public void rogueStay() {
-        stayTexture = new Texture("knightStay.png");
-        TextureRegion[][] tmp = TextureRegion.split(stayTexture, stayTexture.getWidth()/2, stayTexture.getHeight());
-        stayFrame = new TextureRegion[2];
+    public void rogueStayR() {
+        stayTexture = new Texture("knightStayR.png");
+        TextureRegion[][] tmp = TextureRegion.split(stayTexture, stayTexture.getWidth()/4, stayTexture.getHeight());
+        stayFrame = new TextureRegion[4];
         int index = 0;
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 4; i++) {
             stayFrame[index++] = tmp[0][i];
         }
-        stayAnimation = new Animation(0.25f, stayFrame);
+        stayAnimation = new Animation(0.14f, stayFrame);
     }
-    public void rogueRun() {
-        runTexture = new Texture("axe bandit run.png");
+    public void rogueStayL() {
+        stayTexture = new Texture("knightStayL.png");
+        TextureRegion[][] tmp = TextureRegion.split(stayTexture, stayTexture.getWidth()/4, stayTexture.getHeight());
+        stayFrame = new TextureRegion[4];
+        int index = 0;
+        for (int i = 0; i < 4; i++) {
+            stayFrame[index++] = tmp[0][i];
+        }
+        stayAnimation = new Animation(0.14f, stayFrame);
+    }
+    public void rogueRunRight() {
+        runTexture = new Texture("knightWalkR.png");
+        TextureRegion[][] tmp = TextureRegion.split(runTexture, runTexture.getWidth()/8, runTexture.getHeight());
+        runFrame = new TextureRegion[8];
+        int index = 0;
+        for (int i = 0; i < 8; i++) {
+            runFrame[index++] = tmp[0][i];
+        }
+        runAnimation = new Animation(0.07f, runFrame);
+    }
+    public void rogueRunLeft() {
+        runTexture = new Texture("knightWalkL.png");
         TextureRegion[][] tmp = TextureRegion.split(runTexture, runTexture.getWidth()/8, runTexture.getHeight());
         runFrame = new TextureRegion[8];
         int index = 0;
