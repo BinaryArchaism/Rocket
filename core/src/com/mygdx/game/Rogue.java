@@ -34,8 +34,6 @@ public class Rogue {
 
     public void render(SpriteBatch batch) {
         batch.draw(currantFrame, position.x, position.y);
-        if (isWatchingRight) rogueStayR();
-        else rogueStayL();
         currantFrame = (TextureRegion) stayAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
     }
 
@@ -58,9 +56,11 @@ public class Rogue {
             rogueRunRight();
             currantFrame = (TextureRegion) runAnimation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
+        if (isWatchingRight) rogueStayR();
+        else rogueStayL();
     }
     public void rogueStayR() {
-        stayTexture = new Texture("knightStayR.png");
+        stayTexture = new Texture("Knight/stayRight.png");
         TextureRegion[][] tmp = TextureRegion.split(stayTexture, stayTexture.getWidth()/4, stayTexture.getHeight());
         stayFrame = new TextureRegion[4];
         int index = 0;
@@ -70,7 +70,7 @@ public class Rogue {
         stayAnimation = new Animation(0.14f, stayFrame);
     }
     public void rogueStayL() {
-        stayTexture = new Texture("knightStayL.png");
+        stayTexture = new Texture("Knight/stayLeft.png");
         TextureRegion[][] tmp = TextureRegion.split(stayTexture, stayTexture.getWidth()/4, stayTexture.getHeight());
         stayFrame = new TextureRegion[4];
         int index = 0;
@@ -80,7 +80,7 @@ public class Rogue {
         stayAnimation = new Animation(0.14f, stayFrame);
     }
     public void rogueRunRight() {
-        runTexture = new Texture("knightWalkR.png");
+        runTexture = new Texture("Knight/walkRight.png");
         TextureRegion[][] tmp = TextureRegion.split(runTexture, runTexture.getWidth()/8, runTexture.getHeight());
         runFrame = new TextureRegion[8];
         int index = 0;
@@ -90,7 +90,7 @@ public class Rogue {
         runAnimation = new Animation(0.07f, runFrame);
     }
     public void rogueRunLeft() {
-        runTexture = new Texture("knightWalkL.png");
+        runTexture = new Texture("Knight/walkLeft.png");
         TextureRegion[][] tmp = TextureRegion.split(runTexture, runTexture.getWidth()/8, runTexture.getHeight());
         runFrame = new TextureRegion[8];
         int index = 0;
