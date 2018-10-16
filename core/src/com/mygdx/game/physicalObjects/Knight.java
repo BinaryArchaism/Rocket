@@ -15,7 +15,7 @@ import com.mygdx.game.Input;
 import com.mygdx.game.MainGameClass;
 import com.mygdx.game.PhysicalObject;
 
-public class Knight extends PhysicalObject {
+public class Knight {
     private Vector2 position;
 
     //Текстуры
@@ -41,12 +41,10 @@ public class Knight extends PhysicalObject {
         stay(true);
         currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/4f, true);
     }
-
     public void render(SpriteBatch batch) {
         batch.draw(currantFrame, position.x, position.y);
         currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
     }
-
     public void update() {
         move();
         combat();
