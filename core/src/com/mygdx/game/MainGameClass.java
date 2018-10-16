@@ -6,12 +6,13 @@ import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.mygdx.game.physicalObjects.Knight;
 
 public class MainGameClass extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
 	Knight rog;
-	static float stateTime;
+	public static float stateTime;
 	FileHandle music;
 	
 	@Override
@@ -22,7 +23,7 @@ public class MainGameClass extends ApplicationAdapter {
 		stateTime = 0f;
 
 		music = new FileHandle("soundtracks/3.wav");
-		//Gdx.audio.newMusic(music).play();
+		Gdx.audio.newMusic(music).play();
 	}
 
 	@Override

@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.physicalObjects;
 
 /**
  *  Напрявления в этом классе:
@@ -6,14 +6,16 @@ package com.mygdx.game;
  *  false - влево
  */
 
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
+import com.mygdx.game.Input;
+import com.mygdx.game.MainGameClass;
+import com.mygdx.game.PhysicalObject;
 
-public class Knight {
+public class Knight extends PhysicalObject {
     private Vector2 position;
 
     //Текстуры
@@ -51,13 +53,13 @@ public class Knight {
     }
     //Все, что связано с движением
     private void move() {
-        if (Input.isClickedLeft()) {
+        if (Input.isClickedLeft() && !Input.isClickedSpace()) {
             position.x--;
             isWatchingRight = false;
             walk(false);
             currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
-        if (Input.isClickedRight()) {
+        if (Input.isClickedRight() && !Input.isClickedSpace()) {
             position.x++;
             isWatchingRight = true;
             walk(true);
@@ -67,12 +69,13 @@ public class Knight {
         else stay(false);
         if (position.x > 340) position.x = 340;
         if (position.x < -18) position.x = -18;
-    }
-    private void combat() {
         if (Input.isClickedSpace()) {
             attack();
             currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
+    }
+    private void combat() {
+
     }
     private void stay(boolean right) {
         if (right) {
