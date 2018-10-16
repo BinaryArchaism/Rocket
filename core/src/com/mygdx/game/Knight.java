@@ -14,23 +14,29 @@ import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
 
 public class Knight {
+    private Vector2 position;
+
+    //Текстуры
+    Texture stayRight;
+    Texture stayLeft;
+    Texture walkRight;
+    Texture walkLeft;
+    Texture attackR;
+    Texture attack1;
 
     //Анимация
     private Animation animation;
-    private Texture texture;
-    private TextureRegion[] frames;
 
     //Текущая текстура
     private TextureRegion currantFrame;
-
-    private Vector2 position;
 
     //Определяет куда смотрит герой. true - смотрит вправо, false - смотрит влево.
     private boolean isWatchingRight = true;
 
     public Knight(int x, int y) {
-        stay(true);
         position = new Vector2(x, y);
+        uploadTextures();
+        stay(true);
         currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/4f, true);
     }
 
@@ -70,27 +76,27 @@ public class Knight {
     }
     private void stay(boolean right) {
         if (right) {
-            doAnimation("Knight/stayRight.png", 4, true, 0.15f);
+            doAnimation(stayRight, 4, true, 0.15f);
         } else {
-            doAnimation("Knight/stayLeft.png", 4, false, 0.15f);
+            doAnimation(stayLeft, 4, false, 0.15f);
         }
     }
     private void walk(boolean right) {
         if (right) {
-            doAnimation("Knight/walkRight.png", 8, true, 0.07f);
+            doAnimation(walkRight, 8, true, 0.07f);
         } else {
-            doAnimation("Knight/walkLeft.png", 8, false, 0.07f);
+            doAnimation(walkLeft, 8, false, 0.07f);
         }
     }
     private void attack() {
         if (isWatchingRight) {
-            doAnimation("Knight/attackR.png", 10, true, 0.07f);
+            doAnimation(attackR, 10, true, 0.07f);
         } else { //исключение: чтобы анимация атаки влево работала правильно, занчение true менять не нужно
-            doAnimation("Knight/attack1.png", 10, true, 0.07f);
+            doAnimation(attack1, 10, true, 0.07f);
         }
     }
-    private void doAnimation(String file, int n, boolean right, float speed) {
-        texture = new Texture(file);
+    private void doAnimation(Texture texture, int n, boolean right, float speed) {
+        TextureRegion[] frames;
         TextureRegion[][] tmp = TextureRegion.split(texture, texture.getWidth() / n, texture.getHeight());
         frames = new TextureRegion[n];
         int index = 0;
@@ -104,5 +110,13 @@ public class Knight {
             }
         }
         animation = new Animation(speed, frames);
+    }
+    private void uploadTextures() {
+        stayRight = new Texture("Knight/stayRight.png");
+        stayLeft = new Texture("Knight/stayLeft.png");
+        walkRight = new Texture("Knight/walkRight.png");
+        walkLeft = new Texture("Knight/walkLeft.png");
+        attackR = new Texture("Knight/attackR.png");
+        attack1 = new Texture("Knight/attack1.png");
     }
 }
