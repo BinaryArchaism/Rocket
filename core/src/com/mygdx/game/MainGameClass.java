@@ -23,7 +23,7 @@ public class MainGameClass extends ApplicationAdapter {
 		stateTime = 0f;
 
 		music = new FileHandle("soundtracks/3.wav");
-		//Gdx.audio.newMusic(music).play();
+		Gdx.audio.newMusic(music).play();
 	}
 
 	@Override
