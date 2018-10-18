@@ -15,9 +15,7 @@ import com.mygdx.game.Input;
 import com.mygdx.game.MainGameClass;
 import com.mygdx.game.PhysicalObject;
 
-public class Knight {
-    private Vector2 position;
-
+public class Knight extends PhysicalObject{
     //Текстуры
     Texture stayRight;
     Texture stayLeft;
@@ -36,7 +34,7 @@ public class Knight {
     private boolean isWatchingRight = true;
 
     public Knight(int x, int y) {
-        position = new Vector2(x, y);
+        super(x, y);
         uploadTextures();
         stay(true);
         currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/4f, true);
@@ -45,12 +43,8 @@ public class Knight {
         batch.draw(currantFrame, position.x, position.y);
         currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
     }
-    public void update() {
-        move();
-        combat();
-    }
     //Все, что связано с движением
-    private void move() {
+    protected void move() {
         if (Input.isClickedLeft() && !Input.isClickedSpace()) {
             position.x--;
             isWatchingRight = false;
@@ -71,9 +65,6 @@ public class Knight {
             attack();
             currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
-    }
-    private void combat() {
-
     }
     private void stay(boolean right) {
         if (right) {

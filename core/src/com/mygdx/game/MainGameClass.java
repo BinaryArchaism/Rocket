@@ -11,7 +11,7 @@ import com.mygdx.game.physicalObjects.Knight;
 public class MainGameClass extends ApplicationAdapter {
 	SpriteBatch batch;
 	Texture img;
-	Knight rog;
+	PhysicalObject knight;
 	public static float stateTime;
 	FileHandle music;
 	
@@ -19,11 +19,11 @@ public class MainGameClass extends ApplicationAdapter {
 	public void create () {
 		batch = new SpriteBatch();
 		img = new Texture("country-platform.png");
-		rog = new Knight(10, 25);
+		knight = new Knight(10, 25);
 		stateTime = 0f;
 
 		music = new FileHandle("soundtracks/3.wav");
-		Gdx.audio.newMusic(music).play();
+		//Gdx.audio.newMusic(music).play();
 	}
 
 	@Override
@@ -37,7 +37,7 @@ public class MainGameClass extends ApplicationAdapter {
 
 		batch.begin();
 		batch.draw(img, 0, 0);
-		rog.render(batch);
+		knight.render(batch);
 		batch.end();
 	}
 	
@@ -48,6 +48,6 @@ public class MainGameClass extends ApplicationAdapter {
 	}
 
 	public void update() {
-		rog.update();
+		knight.update();
 	}
 }
