@@ -59,8 +59,8 @@ public class Knight extends PhysicalObject{
         }
         if (isWatchingRight) stay(true);
         else stay(false);
-        if (position.x > 340) position.x = 340;
-        if (position.x < -18) position.x = -18;
+        if (position.x > 360) position.x = -50;
+        if (position.x < -50) position.x = 360;
         if (Input.isClickedSpace()) {
             attack();
             currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
