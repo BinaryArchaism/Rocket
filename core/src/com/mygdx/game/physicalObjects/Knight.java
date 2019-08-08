@@ -57,11 +57,15 @@ public class Knight extends PhysicalObject{
             walk(true);
             currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
+        if (Input.isClickedSpace()) {
+            if (position.y == 25)
+                jump();
+        }
         if (isWatchingRight) stay(true);
         else stay(false);
         if (position.x > 360) position.x = -50;
         if (position.x < -50) position.x = 360;
-        if (Input.isClickedSpace()) {
+        if (Input.isClickedUp()) {
             attack();
             currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
         }
@@ -87,6 +91,11 @@ public class Knight extends PhysicalObject{
             doAnimation(attack1, 10, true, 0.07f);
         }
     }
+
+    private void jump() {
+        position.y+=30;
+    }
+
     private void doAnimation(Texture texture, int n, boolean right, float speed) {
         TextureRegion[] frames;
         TextureRegion[][] tmp = TextureRegion.split(texture, texture.getWidth() / n, texture.getHeight());
