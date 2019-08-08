@@ -18,7 +18,9 @@ public class PhysicalObject {
         move();
     }
     public void gravitation() {
-        position.add(gravity);
+        if (position.y > 25) {
+            position.add(gravity);
+        }
     }
     protected void move() {}
 }
