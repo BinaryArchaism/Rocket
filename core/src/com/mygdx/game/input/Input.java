@@ -1,4 +1,4 @@
-package com.mygdx.game;
+package com.mygdx.game.input;
 
 import com.badlogic.gdx.Gdx;
 
@@ -12,4 +12,5 @@ public class Input {
     public static boolean isClickedSpace() {
         return Gdx.input.isKeyPressed(62)||Gdx.input.isKeyPressed(19);
     }
+    public static boolean isTouched() { return Gdx.input.isKeyPressed(-1); }
 }

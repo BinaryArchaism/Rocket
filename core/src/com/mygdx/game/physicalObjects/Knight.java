@@ -10,9 +10,8 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.math.Vector2;
-import com.mygdx.game.Input;
-import com.mygdx.game.MainGameClass;
+import com.mygdx.game.input.Input;
+import com.mygdx.game.screens.GameScreen;
 import com.mygdx.game.PhysicalObject;
 
 public class Knight extends PhysicalObject{
@@ -37,11 +36,11 @@ public class Knight extends PhysicalObject{
         super(x, y);
         uploadTextures();
         stay(true);
-        currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/4f, true);
+        currantFrame = (TextureRegion) animation.getKeyFrame(GameScreen.stateTime/4f, true);
     }
     public void render(SpriteBatch batch) {
         batch.draw(currantFrame, position.x, position.y);
-        currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
+        currantFrame = (TextureRegion) animation.getKeyFrame(GameScreen.stateTime/1.5f, true);
     }
     //Все, что связано с движением
     protected void move() {
@@ -49,13 +48,13 @@ public class Knight extends PhysicalObject{
             position.x--;
             isWatchingRight = false;
             walk(false);
-            currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
+            currantFrame = (TextureRegion) animation.getKeyFrame(GameScreen.stateTime/1.5f, true);
         }
         if (Input.isClickedRight() && !Input.isClickedSpace()) {
             position.x++;
             isWatchingRight = true;
             walk(true);
-            currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
+            currantFrame = (TextureRegion) animation.getKeyFrame(GameScreen.stateTime/1.5f, true);
         }
         if (isWatchingRight) stay(true);
         else stay(false);
@@ -63,7 +62,7 @@ public class Knight extends PhysicalObject{
         if (position.x < -50) position.x = 360;
         if (Input.isClickedSpace()) {
             attack();
-            currantFrame = (TextureRegion) animation.getKeyFrame(MainGameClass.stateTime/1.5f, true);
+            currantFrame = (TextureRegion) animation.getKeyFrame(GameScreen.stateTime/1.5f, true);
         }
     }
     private void stay(boolean right) {
